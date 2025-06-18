@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #4a4e69, #9a8c98, #c9ada7, #f2e9e4);
+    min-height: 100vh;
+    color: #22223b;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #22223b;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.menu button {
+    background: #9a8c98;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu button:hover {
+    background: #7a6f79;
+    transform: translateY(-2px);
+}
+
+.product-form-container {
+    background: rgba(255, 255, 255, 0.95);
+    color: #22223b;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.product-form-container h2 {
+    color: #4a4e69;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-form label {
+    font-weight: 600;
+    color: #4a4e69;
+}
+
+.product-form input,
+.product-form textarea,
+.product-form select {
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.product-form input:focus,
+.product-form textarea:focus,
+.product-form select:focus {
+    border-color: #9a8c98;
+    outline: none;
+}
+
+.product-form button[type="submit"] {
+    background: #4a4e69;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.product-form button[type="submit"]:hover {
+    background: #22223b;
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    display: block;
+    text-align: center;
+    background: #c9ada7;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background: #9a8c98;
+    transform: translateY(-2px);
+}
+
+.error-message {
+    color: #dc3545;
+    background: #f8d7da;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #f5c6cb;
+}
+
+.success-message {
+    color: #28a745;
+    background: #d4edda;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #c3e6cb;
+}
+
+@media (max-width: 480px) {
+    .product-form-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .menu button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/fashion.css}">
+    <title>ShopEase</title>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="section">
+        <h3>ShopEase</h3>
+        <ul class="menu">
+            <a th:href="@{/postlogin.html}"><button class="home">Home</button></a>
+            <a th:href="@{/aboutuslogin.html}"><button class="home">About Us</button></a>
+            <a th:href="@{/cart.html}"><button class="home">Cart</button></a>
+        </ul>
+    </div>
+</nav>
+
+<div class="main">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+
+<h2>Choose Your Category</h2>
+
+<div class="images">
+    <form th:action="@{/product.html(categoryId=2)}">
+        <button class="imageBtn">
+            <img th:src="@{https://i.pinimg.com/736x/0e/1d/5b/0e1d5b5f505a080a9a00af7833438bbd.jpg}" alt="Men's Fashion">
+        </button>
+    </form>
+
+    <form th:action="@{/product.html(categoryId=3)}">
+        <button class="imageBtn">
+            <img th:src="@{https://cdn.streetstylestore.com/2/3/1/9/0/6/231906-sss_vertical.webp}" alt="Women's Fashion">
+        </button>
+    </form>
+</div>
+
+<footer>
+    <div class="footers">
+        <div class="footer-section">
+            <h3>Get To Know Us</h3>
+            <ul class="gettoknowUs">
+                <li>About ShopEase</li>
+                <li>Careers</li>
+                <li>ShopEase Science</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <ul class="connectwithus">
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Instagram</li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

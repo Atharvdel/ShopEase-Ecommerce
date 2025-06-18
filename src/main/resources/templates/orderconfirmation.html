@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" th:href="@{/css/orderconfirmation.css}" />
+</head>
+<body>
+<nav class="navbar">
+    <h3>ShopEase</h3>
+    <ul class="menu">
+        <li>
+            <a th:href="@{/postlogin.html}"><button class="home">Home</button></a>
+        </li>
+        <li>
+            <a th:href="@{/api/logout}"><button class="home">Log Out</button></a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="title">✅ Order Confirmed!</div>
+
+    <div class="section">
+        <h3>Order Summary</h3>
+        <div class="row">
+            <span class="label"><strong>Order ID:</strong></span>
+            <span class="value" th:text="${order.orderId}">#123456</span>
+        </div>
+        <div class="row">
+            <span class="label"><strong>Date:</strong></span>
+            <span class="value" th:text="${{order.time}}">April 17, 2025</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Payment Details</h3>
+        <div class="row">
+            <span class="label"><strong>Total Bill:</strong></span>
+            <span class="value">₹<span th:text="${order.amount}">1,599.00</span></span>
+        </div>
+        <div class="row">
+            <span class="label"><strong>Mode of Payment:</strong></span>
+            <span class="value" th:text="${payment.paymentMethod}">UPI</span>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <a th:href="@{/postlogin.html}"><button>Return Home</button></a>
+        <a th:href="@{/product.html}"><button>Continue Shopping</button></a>
+    </div>
+</div>
+
+<script th:src="@{/js/orderconfirmation.js}"></script>
+</body>
+</html>

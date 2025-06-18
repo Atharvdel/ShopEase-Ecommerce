@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #4a4e69, #9a8c98, #c9ada7, #f2e9e4);
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+
+    .menu{
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+
+}
+.product-form-container {
+  background-color: #22223b;
+  color: white;
+  padding: 30px;
+  margin: 20px;
+  border-radius: 15px;
+ width: 500px;
+  align-self: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.product-form input,
+.product-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+}
+
+.product-form button {
+  background-color: #9a8c98;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.product-form button:hover {
+  transform: scale(1.05);
+}
+
+.menu form {
+  display: inline-flex;
+}
+
+.menu .home{
+  background-color: #22223b;
+  font-size: 15px;
+  padding: 17px;
+  margin: 0px
+
+}
+
+.section{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    
+    color: white;
+}
+
+.navbar{
+    background-color: #22223b;
+}
+
+.navbar button{
+  background-color:#9a8c98;
+  border: none;
+  border-radius: 10px;
+  padding:10px;
+  margin: 0px;
+  color: white;
+}
+
+.navbar button:hover{
+   background-color: #9a8c98; /* darker shade on hover */
+  transform: scale(1.05);
+  
+}
+.navbar h3{
+  padding: 10px;
+}
+
+.navbar button{
+  background-color:#9a8c98;
+  border: none;
+  border-radius: 10px;
+  padding:10px;
+  margin: 0px;
+  color: white;
+}
+
+.navbar button:hover{
+   background-color: #9a8c98; /* darker shade on hover */
+  transform: scale(1.05);
+  
+}
+.navbar h3{
+  padding: 10px;
+  margin: 20px;
+}

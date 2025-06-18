@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/products.css}">
+    <title>ShopEase</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="section">
+        <h3>ShopEase</h3>
+<!--        <div class="search-container">-->
+<!--            <form th:action="@{/product.html}" method="get">-->
+<!--                <input type="text" name="keyword" placeholder="Search anything...">-->
+<!--                <button type="submit">Search</button>-->
+<!--            </form>-->
+<!--        </div>-->
+        <ul class="menu">
+            <li><a th:href="@{/postlogin.html}"><button class="home">Home</button></a></li>
+            <li><a th:href="@{/aboutuslogin.html}"><button class="home">About Us</button></a></li>
+            <li><a th:href="@{/cart.html}"><button class="home">Cart</button></a></li>
+            <li><a th:href="@{/api/logout}"><button class="login">Logout</button></a></li>
+        </ul>
+    </div>
+</nav>
+
+<div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+
+<div class="filter-container">
+    <!-- Categories Filter -->
+    <div class="filter-section">
+        <div class="filter-title">Categories</div>
+        <form th:action="@{/product.html}" method="get" id="categoryForm">
+            <div class="filter-item" th:each="category : ${categories}">
+                <input type="checkbox"
+                       th:id="${'category-' + category.categoryId}"
+                       th:name="categoryId"
+                       th:value="${category.categoryId}"
+                       th:checked="${selectedCategoryId != null && selectedCategoryId == category.categoryId}">
+                <label th:for="${'category-' + category.categoryId}"
+                       th:text="${category.name}">Category Name</label>
+            </div>
+            <button type="submit" class="filter-button">Apply Filters</button>
+        </form>
+    </div>
+
+    <!-- Ratings Filter -->
+    <div class="filter-section">
+        <div class="filter-title">Ratings</div>
+        <form th:action="@{/product.html}" method="get" id="ratingForm">
+            <input type="hidden" name="categoryId"
+                   th:if="${selectedCategoryId != null}"
+                   th:value="${selectedCategoryId}">
+            <div class="filter-item">
+                <input type="radio" id="rating4" name="minRating" value="4"
+                       th:checked="${minRating != null && minRating == 4}">
+                <label for="rating4">4+ <span class="star">&#9733;</span></label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="rating3" name="minRating" value="3"
+                       th:checked="${minRating != null && minRating == 3}">
+                <label for="rating3">3+ <span class="star">&#9733;</span></label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="rating2" name="minRating" value="2"
+                       th:checked="${minRating != null && minRating == 2}">
+                <label for="rating2">2+ <span class="star">&#9733;</span></label>
+            </div>
+            <button type="submit" class="filter-button">Apply Filters</button>
+        </form>
+    </div>
+
+    <!-- Price Filter -->
+    <div class="filter-section">
+        <div class="filter-title">Price Range</div>
+        <form th:action="@{/product.html}" method="get" id="priceForm">
+            <input type="hidden" name="categoryId"
+                   th:if="${selectedCategoryId != null}"
+                   th:value="${selectedCategoryId}">
+            <div class="filter-item">
+                <input type="radio" id="price1" name="priceRange" value="0-500"
+                       th:checked="${priceRange != null && priceRange == '0-500'}">
+                <label for="price1">Below 500</label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="price2" name="priceRange" value="500-1000"
+                       th:checked="${priceRange != null && priceRange == '500-1000'}">
+                <label for="price2">500 - 1000</label>
+            </div>
+            <div class="filter-item">
+                <input type="radio" id="price3" name="priceRange" value="1000-999999"
+                       th:checked="${priceRange != null && priceRange == '1000-999999'}">
+                <label for="price3">1000+</label>
+            </div>
+            <button type="submit" class="filter-button">Apply Filters</button>
+        </form>
+    </div>
+</div>
+
+<div id="product-container">
+    <!-- No products message -->
+    <div th:if="${#lists.isEmpty(products)}" class="no-products">
+        <h2>No Products Available</h2>
+        <p>We couldn't find any products matching your filters.</p>
+    </div>
+
+    <!-- Product list -->
+    <div th:each="product : ${products}" class="product-card">
+        <img th:src="${product.imageUrl != null ? product.imageUrl : '/images/default-product.jpg'}"
+             alt="Product Image">
+        <div class="product-info">
+            <h3 th:text="${product.name}">Product Name</h3>
+            <p class="product-description" th:text="${product.description}">Product description goes here.</p>
+            <div class="product-price" th:text="'₹' + ${product.price}">₹0</div>
+            <div class="product-rating">
+                <!-- Dynamic rating display using the productRatings map -->
+                <span th:each="i : ${#numbers.sequence(1, 5)}"
+                      th:text="${i <= productRatings.get(product.productId).avgRating ? '★' : '☆'}">☆</span>
+                <span th:text="'(' + ${productRatings.get(product.productId).count} + ')'"></span>
+            </div>
+            <form th:action="@{/cart/add}" method="post">
+                <input type="hidden" name="productId" th:value="${product.productId}">
+                <button type="submit" class="add-to-cart">Add to Cart</button>
+            </form>
+            <a th:href="@{/productdetail.html(id=${product.productId})}" class="view-details">View Details</a>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/product.js}"></script>
+</body>
+</html>

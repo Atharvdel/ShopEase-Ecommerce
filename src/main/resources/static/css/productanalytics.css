@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #4a4e69, #9a8c98, #c9ada7, #f2e9e4);
+    min-height: 100vh;
+    color: white;
+
+}
+
+.menu{
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+
+}
+.menu form {
+    display: inline-flex;
+}
+
+.menu .home{
+    background-color: #22223b;
+    font-size: 15px;
+    padding: 17px;
+    margin: 0px
+
+}
+
+.section{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+
+    color: white;
+}
+
+.navbar{
+    background-color: #22223b;
+}
+
+.navbar button{
+    background-color:#9a8c98;
+    border: none;
+    border-radius: 10px;
+    padding:10px;
+    margin: 0px;
+    color: white;
+}
+
+.navbar button:hover{
+    background-color: #9a8c98; /* darker shade on hover */
+    transform: scale(1.05);
+
+}
+.navbar h3{
+    padding: 10px;
+}
+
+.navbar button{
+    background-color:#9a8c98;
+    border: none;
+    border-radius: 10px;
+    padding:10px;
+    margin: 0px;
+    color: white;
+}
+
+.navbar button:hover{
+    background-color: #9a8c98; /* darker shade on hover */
+    transform: scale(1.05);
+
+}
+.navbar h3{
+    padding: 10px;
+    margin: 20px;
+}
+
+.product-analytics-wrapper {
+    display: flex;
+    padding: 20px;
+}
+
+.product-analytics-sidebar {
+    width: 220px;
+    background-color: #22223b;
+    color: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    margin-right: 20px;
+    height: fit-content;
+}
+
+.product-analytics-sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.product-analytics-sidebar label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.product-analytics-sidebar input[type="radio"] {
+    margin-right: 10px;
+}
+
+.product-analytics-content {
+    flex: 1;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    color: #333;
+}
+
+.product-analytics-content h1 {
+    margin-bottom: 30px;
+}
+
+.product-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.product-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.product-details h2 {
+    color: #22223b;
+    margin-bottom: 10px;
+}
+
+.product-details p {
+    font-size: 16px;
+    margin: 5px 0;
+}

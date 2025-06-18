@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/postlogin.css}">
+    <title>ShopEase</title>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="section">
+        <h3>ShopEase</h3>
+        <div class="search-container">
+            <input type="text" placeholder="Search anything..." id="searchInput">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <ul class="menu">
+            <li><a th:href="@{/postlogin.html}"><button class="home">Home</button></a></li>
+            <li><a th:href="@{/aboutuslogin.html}"><button class="home">About Us</button></a></li>
+            <li><a th:href="@{/cart.html}"><button class="cart">Cart</button></a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="intro">
+    <div class="content">
+        <h2>Your one-stop Destination for Trendy Fashion, Electronics & More!</h2>
+        <br/>
+        <p>Discover the latest trends, unbeatable deals, and a seamless shopping</p>
+        <p class="centre">experience — all at your fingertips.</p>
+        <p>Quality products. Fast delivery. Trusted by thousands.</p>
+        <br/>
+        <h3>Shop Smart, Live Better</h3>
+        <br/><br/><br/><br/>
+        <div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <h1>Our Categories</h1>
+    </div>
+
+    <!-- Categories as images only, not buttons/forms -->
+    <div class="images">
+        <img src="https://imgmediagumlet.lbb.in/media/2024/07/669e2e6d5b38bb58d30bd6b1_1721642605705.jpg" alt="Beauty">
+        <img src="https://img.freepik.com/free-photo/millennial-fashion-couple-white-studio_158595-5457.jpg" alt="Fashion">
+        <img src="https://miro.medium.com/v2/resize:fit:1080/1*H_7YXqx8ZXbkuHhKXiYPtg@2x.jpeg" alt="Phones">
+        <img src="https://thumbs.dreamstime.com/b/stack-books-open-book-positioned-top-set-against-teal-background-stack-consists-various-colored-book-333443799.jpg" alt="Books">
+        <img src="https://m.media-amazon.com/images/I/71OLtL+P-bL._AC_UY1000_.jpg" alt="Shoes">
+        <img src="https://www.angelfurniture.in/image/cache/catalog/Products/AF-222H/Sheesham-Solid-Wood-Book-Shelf-1-1600x1760.jpg" alt="Furniture">
+        <img src="https://media.istockphoto.com/id/171582532/photo/box-full-of-toys-donations.jpg?s=612x612&w=0&k=20&c=Mr9P-zmk2v-k_GwgesYp7Za-b_5zlobUgK37UFK9S0c=" alt="Toys">
+        <img src="https://st4.depositphotos.com/4475215/39398/i/450/depositphotos_393980990-stock-photo-modern-home-appliances-commerce-online.jpg" alt="Appliances">
+    </div>
+
+    <!-- Single View Products button below images -->
+    <button class="viewproducts" onclick="window.location.href='product.html'">View Products</button>
+</div>
+
+<footer>
+    <div class="footers">
+        <div class="footer-section">
+            <h3>Get To Know Us</h3>
+            <ul class="gettoknowUs">
+                <li>About ShopEase</li>
+                <li>Careers</li>
+                <li>ShopEase Science</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <ul class="connectwithus">
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Instagram</li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function searchProducts() {
+        var keyword = document.getElementById('searchInput').value;
+        if (keyword && keyword.trim() !== '') {
+            window.location.href = 'product.html?keyword=' + encodeURIComponent(keyword);
+        } else {
+            window.location.href = 'product.html';
+        }
+    }
+</script>
+
+</body>
+</html>

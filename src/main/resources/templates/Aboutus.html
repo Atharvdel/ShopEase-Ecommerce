@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/aboutus.css}">
+    <title>ShopEase</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="section">
+        <!-- Optional text placeholders -->
+
+
+        <h3>ShopEase</h3>
+
+        <ul class="menu">
+            <li>
+                <form th:action="@{/ecom.html}">
+                    <button class="home">Home</button>
+                </form>
+            </li>
+            <li>
+                <form th:action="@{/Aboutus.html}">
+                    <button class="home">About Us</button>
+                </form>
+            </li>
+            <li class="dropdown">
+                <button class="login">Sign-Up/Login</button>
+                <div class="dropdown-content">
+                    <form th:action="@{/customer.html}">
+                        <button class="drop-btn">Customer</button>
+                    </form>
+                    <form th:action="@{/seller.html}">
+                        <button class="drop-btn">Seller</button>
+                    </form>
+                    <form th:action="@{/adminlogin.html}">
+                        <button class="drop-btn">Admin</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+
+<div style="padding: 50px; max-width: 1000px; margin: auto;">
+    <h1>About Us</h1>
+    <p style="font-size: 18px; line-height: 1.8;">
+        Welcome to <strong>ShopEase</strong> – your one-stop destination for everything you need!
+    </p>
+    <p style="font-size: 18px; line-height: 1.8;">
+        At ShopEase, we believe in transforming the shopping experience through innovation, trust, and customer satisfaction.
+        From the latest in fashion, electronics, beauty, furniture, books, and toys to top-notch home appliances – we offer a
+        wide range of products to meet every lifestyle need.
+    </p>
+    <p style="font-size: 18px; line-height: 1.8;">
+        Founded with a mission to deliver quality at your doorstep, ShopEase brings together trusted sellers, curated products,
+        and an intuitive platform. Whether you're a trendsetter looking for the newest styles, a tech geek on the hunt for the
+        latest gadgets, or a homemaker furnishing your dream home — we've got you covered.
+    </p>
+
+    <h2>Our Mission</h2>
+    <p style="font-size: 18px; line-height: 1.8;">
+        To provide a seamless, affordable, and delightful shopping experience for every customer, everywhere.
+    </p>
+
+    <h2>Why Choose ShopEase?</h2>
+    <ul style="font-size: 18px; line-height: 1.8;">
+        <li>✅ Wide Variety of Products</li>
+        <li>✅ Fast and Reliable Delivery</li>
+        <li>✅ Easy Returns and Refunds</li>
+    </ul>
+</div>
+
+<footer class="footers">
+    <div class="footer-section">
+        <h3>Get To Know Us</h3>
+        <ul class="gettoknowUs">
+            <li>About ShopEase</li>
+            <li>Careers</li>
+            <li>ShopEase Science</li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <ul class="connectwithus">
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instagram</li>
+        </ul>
+    </div>
+</footer>
+</body>
+</html>

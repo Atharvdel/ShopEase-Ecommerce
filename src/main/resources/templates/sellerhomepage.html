@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seller Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/sellerhomepage.css}" href="../static/css/sellerhomepage.css" />
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="section">
+    <h3>ShopEase</h3>
+    <div class="search-container">
+      <form th:action="@{/sellerhomepage.html}" method="get" style="display:flex;">
+        <input type="text" name="keyword" placeholder="Search anything..." th:value="${keyword}">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <ul class="menu">
+      <li><a th:href="@{/sellerhomepage.html}"><button class="home">Home</button></a></li>
+      <li>
+        <form th:action="@{/api/logout}" method="post">
+          <button class="home">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Container -->
+<div class="main-container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h4>Menu</h4>
+    <div class="seller-info" th:if="${seller != null}">
+      <p>Welcome, <span th:text="${seller.businessName}">Seller Name</span>!</p>
+      <p>Email: <span th:text="${seller.email}">seller@example.com</span></p>
+    </div>
+    <a th:href="@{/seller/analytics}"><button>View Analytics</button></a>
+    <a th:href="@{/seller/orders}"><button>View Orders</button></a>
+    <a th:href="@{/seller/products/add}"><button>Add Product</button></a>
+  </aside>
+
+  <!-- Product Section -->
+  <section class="products" id="products-section">
+    <h2>Your Products</h2>
+
+    <!-- No Products -->
+    <div th:if="${#lists.isEmpty(sellerProducts)}" class="no-products">
+      <p>You haven't added any products yet.</p>
+      <a th:href="@{/seller/products/add}" class="add-product-btn">Add Your First Product</a>
+    </div>
+
+    <!-- Product Grid -->
+    <div th:if="${sellerProducts != null && !#lists.isEmpty(sellerProducts)}" class="product-grid">
+      <div th:each="product : ${sellerProducts}" class="product-card">
+        <img
+                th:src="${product.imageUrl != null ? product.imageUrl : '/images/default-product.jpg'}"
+                src="../static/images/default-product.jpg"
+                alt="Product Image"
+        >
+        <div class="product-info">
+          <h3 th:text="${product.name}">Product Name</h3>
+          <p class="product-description" th:text="${product.description}">Product description goes here.</p>
+          <div class="product-price" th:text="'₹' + ${product.price}">₹0</div>
+          <div class="product-actions">
+            <a th:href="@{/seller/products/edit/{id}(id=${product.productId})}" class="edit-btn">Edit</a>
+            <form th:action="@{/seller/products/delete}" method="post" style="display:inline;">
+              <input type="hidden" name="productId" th:value="${product.productId}">
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
+            <!-- View Analytics Button -->
+            <a th:href="@{/productanalytics.html(productId=${product.productId})}" class="analytics-btn">View Analytics</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- JavaScript -->
+<script th:src="@{/js/sellerhomepage.js}" src="../static/js/sellerhomepage.js"></script>
+</body>
+</html>

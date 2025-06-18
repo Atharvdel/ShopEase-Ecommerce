@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #4a4e69, #9a8c98, #c9ada7, #f2e9e4);
+  color: white;
+  min-height: 100vh;
+}
+
+.background {
+  min-height: 100vh;
+  padding: 50px 20px;
+}
+
+.payment-container {
+  text-align: center;
+}
+
+.heading {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.make-payment-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.make-payment-btn {
+  background-color: #22223b;
+  color: white;
+  border: none;
+  padding: 20px 60px;
+  border-radius: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 300px;
+}
+
+.make-payment-btn:hover {
+ background-color: #9a8c98; 
+
+  transform: scale(1.05);
+}
+
+
+.payment-btn {
+  background-color: #22223b; 
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 250px;
+}
+
+.payment-btn:hover {
+  background-color: #9a8c98; 
+  transform: scale(1.05);
+}
+
+.payment-btn.selected {
+  background-color: #4e54c8;
+  color: #fff;
+  border: 2px solid #f2e9e4;
+  box-shadow: 0 0 10px #9a8c98;
+}
+

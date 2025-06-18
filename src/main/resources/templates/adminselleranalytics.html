@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Seller Analytics</title>
+    <link rel="stylesheet" th:href="@{/css/adminselleranalytics.css}" />
+</head>
+<body>
+<nav class="navbar">
+    <div class="section">
+        <h3>ShopEase</h3>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/adminseller.html}"><button class="home">Home</button></a>
+            </li>
+            <li>
+                <form th:action="@{/api/logout}" method="post">
+                    <button type="submit" class="home">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="analytics-wrapper">
+    <aside class="analytics-sidebar">
+        <h2>Analytics</h2>
+        <ul>
+            <li><a th:href="@{/admin/selleranalytics(type='total-sales')}">Total Sales</a></li>
+            <li><a th:href="@{/admin/selleranalytics(type='total-orders')}">Total Orders</a></li>
+            <li><a th:href="@{/admin/selleranalytics(type='active-products')}">Active Products</a></li>
+            <li><a th:href="@{/admin/selleranalytics(type='overall-ratings')}">Overall Ratings</a></li>
+        </ul>
+    </aside>
+
+    <main class="analytics-content">
+        <h1 th:text="${analyticsTitle}">Admin Seller Analytics</h1>
+
+        <div th:if="${analyticsValue}" class="value-display">
+            <h2 th:text="${analyticsValue}"></h2>
+        </div>
+
+        <div th:if="${tableData}" class="table-display">
+            <table>
+                <thead>
+                <tr>
+                    <th th:each="header : ${tableHeaders}" th:text="${header}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="row : ${tableData}">
+                    <!-- Access each cell by index -->
+                    <td th:text="${row[0]}"></td> <!-- Product ID -->
+                    <td th:text="${row[1]}"></td> <!-- Name -->
+                    <td th:text="${row[2]}"></td> <!-- Total Sold -->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div th:if="${analyticsValue == null and tableData == null}" class="default-message">
+        <p>Select an analytics option from the sidebar to view data</p>
+        </div>
+    </main>
+</div>
+</body>
+</html>

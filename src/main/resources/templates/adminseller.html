@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin - All Sellers</title>
+    <link rel="stylesheet" th:href="@{/css/adminseller.css}" />
+</head>
+<body>
+<nav class="navbar">
+    <div class="section">
+        <h3>ShopEase</h3>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/adminseller.html}" class="home-link">Home</a>
+            </li>
+            <li>
+                <form th:action="@{/api/logout}" method="post">
+                    <button class="home">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <div class="container">
+        <h1>All Sellers</h1>
+
+        <!-- Top Actions: Product Analytics & Overall Analytics -->
+        <div class="top-actions">
+            <a th:href="@{/adminproductanalytics.html}" class="product-analytics-btn">
+                View Product Analytics
+            </a>
+            <a th:href="@{/adminanalytics.html}" class="view-btn">
+                View Overall Analytics
+            </a>
+        </div>
+
+        <div th:if="${not #lists.isEmpty(sellers)}">
+            <table id="sellerTable">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Business Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="seller : ${sellers}">
+                    <td th:text="${seller.id}">1</td>
+                    <td th:text="${seller.businessName}">Example Corp</td>
+                    <td th:text="${seller.email}">seller@example.com</td>
+                    <td th:text="${seller.phone}">1234567890</td>
+                    <td class="actions">
+                        <!-- View Analytics Button -->
+<!--                        <a th:href="@{/admin/selleranalytics.html(sellerId=${seller.id})}"-->
+<!--                           class="view-btn" style="margin-right:6px;">View Analytics</a>-->
+                        <!-- Delete Button -->
+                        <form th:action="@{/admin/seller/{id}/remove(id=${seller.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="delete-btn"
+                                    onclick="return confirm('Are you sure you want to delete this seller?')">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${#lists.isEmpty(sellers)}" class="no-sellers">
+            <p>No sellers registered yet.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

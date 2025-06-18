@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Analytics Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/adminanalytics.css}" />
+    <script>
+        async function loadAnalytics(type) {
+            try {
+                // Notice the admin endpoint here!
+                const response = await fetch(`/admin/analytics/data?type=${type}`);
+                const data = await response.json();
+
+                document.getElementById("analytics-title").textContent = data.title;
+
+                const contentDiv = document.getElementById("analytics-content");
+                contentDiv.innerHTML = "";
+
+                if (data.value !== undefined) {
+                    contentDiv.innerHTML = `<h3>${data.value}</h3>`;
+                }
+
+                if (data.tableData) {
+                    const table = document.createElement("table");
+                    table.innerHTML = `
+                        <thead>
+                            <tr>
+                                ${data.tableHeaders.map(header => `<th>${header}</th>`).join('')}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${data.tableData.map(row => `
+                                <tr>
+                                    ${row.map(cell => `<td>${cell}</td>`).join('')}
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    `;
+                    contentDiv.appendChild(table);
+                }
+            } catch (error) {
+                console.error("Error loading analytics:", error);
+                document.getElementById("analytics-content").innerHTML =
+                    "<p style='color:red;'>Failed to load analytics.</p>";
+            }
+        }
+    </script>
+</head>
+<body>
+<nav class="navbar">
+    <div class="section">
+        <h3>ShopEase</h3>
+        <ul class="menu">
+            <li><a th:href="@{/adminseller.html}"><button class="home">Home</button></a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="analytics-wrapper">
+    <aside class="analytics-sidebar">
+        <h2>Analytics</h2>
+        <ul>
+            <li><button type="button" onclick="loadAnalytics('total-sales')">Total Sales</button></li>
+            <li><button type="button" onclick="loadAnalytics('total-orders')">Total Orders</button></li>
+            <li><button type="button" onclick="loadAnalytics('active-sellers')">Active Sellers</button></li>
+            <li><button type="button" onclick="loadAnalytics('overall-ratings')">Overall Ratings</button></li>
+            <li><button type="button" onclick="loadAnalytics('top-sellers')">Top Sellers</button></li>
+            <li><button type="button" onclick="loadAnalytics('category-sales')">Category-wise Sales</button></li>
+        </ul>
+    </aside>
+
+    <main class="analytics-content">
+        <h1 id="analytics-title">Admin Analytics Dashboard</h1>
+        <div id="analytics-content">
+            <p>Select an option from the sidebar to view analytics.</p>
+        </div>
+    </main>
+</div>
+</body>
+</html>

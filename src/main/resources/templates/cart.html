@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - ShopEase</title>
+  <link rel="stylesheet" th:href="@{/css/cart.css}">
+</head>
+<body>
+<nav class="navbar">
+  <div class="section">
+    <h3>ShopEase</h3>
+    <ul class="menu">
+      <li><a th:href="@{/postlogin.html}"><button class="home">Home</button></a></li>
+      <li><a th:href="@{/aboutuslogin.html}"><button class="home">About Us</button></a></li>
+      <li><a th:href="@{/cart.html}"><button class="home">Cart</button></a></li>
+      <li><a th:href="@{/api/logout}"><button class="login">Logout</button></a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="cart-container">
+  <h2>Your Cart</h2>
+
+  <!-- Success and Error Messages -->
+  <div th:if="${success}" class="success-message" th:text="${success}"></div>
+  <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+  <!-- Empty Cart Message -->
+  <div th:if="${cartItems == null || #lists.isEmpty(cartItems)}" class="empty-cart">
+    <p>Your cart is empty. Start shopping now!</p>
+    <a th:href="@{/product.html}" class="continue-shopping">Continue Shopping</a>
+  </div>
+
+  <!-- Cart Items -->
+  <div th:if="${cartItems != null && !#lists.isEmpty(cartItems)}" class="cart-items">
+    <div class="cart-header">
+      <span class="header-product">Product</span>
+      <span class="header-price">Price</span>
+      <span class="header-quantity">Quantity</span>
+      <span class="header-total">Total</span>
+      <span class="header-actions">Actions</span>
+    </div>
+
+    <div th:each="item : ${cartItems}" class="cart-item">
+      <div class="product-info">
+        <img th:src="${item.product.imageUrl != null ? item.product.imageUrl : '/images/default-product.jpg'}"
+             alt="Product Image" class="product-image">
+        <div class="product-details">
+          <h4 th:text="${item.product.name}">Product Name</h4>
+          <p class="product-description" th:text="${item.product.description}">Product Description</p>
+        </div>
+      </div>
+
+      <div class="product-price" th:text="'₹' + ${item.product.price}">₹0</div>
+
+      <div class="quantity-controls">
+        <form th:action="@{/cart/update}" method="post" class="quantity-form">
+          <input type="hidden" name="productId" th:value="${item.product.productId}">
+          <input type="hidden" name="quantity" th:value="${item.quantity - 1}">
+          <button type="submit" class="quantity-btn" th:disabled="${item.quantity <= 1}">-</button>
+        </form>
+        <span class="quantity-value" th:text="${item.quantity}">1</span>
+        <form th:action="@{/cart/update}" method="post" class="quantity-form">
+          <input type="hidden" name="productId" th:value="${item.product.productId}">
+          <input type="hidden" name="quantity" th:value="${item.quantity + 1}">
+          <button type="submit" class="quantity-btn">+</button>
+        </form>
+      </div>
+
+      <div class="item-total" th:text="'₹' + ${item.totalPrice}">Total: ₹0</div>
+
+      <div class="item-actions">
+        <form th:action="@{/cart/remove}" method="post">
+          <input type="hidden" name="productId" th:value="${item.product.productId}">
+          <button type="submit" class="remove-btn">Remove</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Total and Checkout -->
+  <div th:if="${cartItems != null && !#lists.isEmpty(cartItems)}" class="cart-summary">
+    <div class="summary-row">
+      <span>Subtotal:</span>
+      <span th:text="'₹' + ${totalPrice}">₹0</span>
+    </div>
+    <div class="summary-row">
+      <span>Shipping:</span>
+      <span>Free</span>
+    </div>
+    <div class="summary-row total">
+      <span>Total:</span>
+      <span th:text="'₹' + ${totalPrice}">₹0</span>
+    </div>
+    <form th:action="@{/checkout}" method="get">
+      <button type="submit" class="checkout-btn">Proceed to Checkout</button>
+    </form>
+    <a th:href="@{/product.html}" class="continue-shopping">Continue Shopping</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 ShopEase. All rights reserved.</p>
+  </div>
+</footer>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  const successMessage = /*[[${success}]]*/ null;
+  const errorMessage = /*[[${error}]]*/ null;
+
+    // if (successMessage) {
+    //   alert(successMessage);
+    // } else if (errorMessage) {
+    //   alert(errorMessage);
+    // }
+  /*]]>*/
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Page</title>
+  <!-- Corrected CSS reference for Spring Boot + Thymeleaf -->
+  <link rel="stylesheet" th:href="@{/css/payment.css}" />
+</head>
+<body>
+<div class="background">
+  <div class="payment-container">
+    <h1 class="heading">Choose Your Payment Mode</h1>
+
+    <form th:action="@{/payment/submit}" method="post" id="paymentForm">
+      <div class="payment-options">
+        <button type="button" class="payment-btn" data-method="Credit Card">Credit Card</button>
+        <button type="button" class="payment-btn" data-method="Debit Card">Debit Card</button>
+        <button type="button" class="payment-btn" data-method="Net Banking">Net Banking</button>
+        <button type="button" class="payment-btn" data-method="UPI">UPI</button>
+        <button type="button" class="payment-btn" data-method="Cash on Delivery">Cash on Delivery</button>
+        <button type="button" class="payment-btn" data-method="Wallet / Gift Card">Wallet / Gift Card</button>
+      </div>
+      <input type="hidden" name="paymentMethod" id="paymentMethod" required />
+
+      <!-- Make Payment Button -->
+      <div class="make-payment-container">
+        <button type="submit" class="make-payment-btn">Make Payment</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  // Highlight selected payment method and set hidden input
+  const paymentBtns = document.querySelectorAll('.payment-btn');
+  const paymentMethodInput = document.getElementById('paymentMethod');
+
+  paymentBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      paymentBtns.forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      paymentMethodInput.value = this.getAttribute('data-method');
+    });
+  });
+
+  // Prevent form submission if no method is selected
+  document.getElementById('paymentForm').addEventListener('submit', function(e) {
+    if (!paymentMethodInput.value) {
+      alert('Please select a payment method.');
+      e.preventDefault();
+    }
+  });
+</script>
+</body>
+</html>

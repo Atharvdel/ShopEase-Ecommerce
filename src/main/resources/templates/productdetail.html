@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details</title>
+  <link rel="stylesheet" th:href="@{/css/productdetail.css}" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="section">
+    <h3>ShopEase</h3>
+<!--    <div class="search-container">-->
+<!--      <form th:action="@{/product.html}" method="get">-->
+<!--        <input type="text" name="keyword" placeholder="Search anything...">-->
+<!--        <button type="submit">Search</button>-->
+<!--      </form>-->
+<!--    </div>-->
+    <ul class="menu">
+      <li><a th:href="@{/postlogin.html}"><button class="home">Home</button></a></li>
+      <li><a th:href="@{/aboutuslogin.html}"><button class="home">About Us</button></a></li>
+      <li><a th:href="@{/cart.html}"><button class="home">Cart</button></a></li>
+      <li><a th:href="@{/api/logout}"><button class="login">Logout</button></a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="product-detail">
+  <img th:src="${product.imageUrl}" alt="Product Image" />
+  <div class="info">
+    <h2 th:text="${product.name}">Product Name</h2>
+    <!-- Fixed line: Use averageRating from model instead of product.averageRating -->
+    <p class="rating" th:text="${'★'.repeat(averageRating) + '☆'.repeat(5 - averageRating) + ' (' + averageRating + ')'}">★★★★☆ (4.0)</p>
+    <p class="price" th:text="'₹' + ${product.price}">₹3,499</p>
+    <p class="desc" th:text="${product.description}">Product description</p>
+    <form th:action="@{/cart/add}" method="post">
+      <input type="hidden" name="productId" th:value="${product.productId}">
+      <button type="submit" class="add-cart">Add to Cart</button>
+    </form>
+
+    <div class="rate-section" th:if="${hasPurchased}">
+      <p><strong>Rate this product:</strong></p>
+      <form th:action="@{/submitRating}" method="post" th:if="${existingRating == null}">
+        <input type="hidden" name="productId" th:value="${product.productId}">
+        <div class="stars">
+          <input type="radio" id="star5" name="ratingValue" value="5" /><label for="star5">☆</label>
+          <input type="radio" id="star4" name="ratingValue" value="4" /><label for="star4">☆</label>
+          <input type="radio" id="star3" name="ratingValue" value="3" /><label for="star3">☆</label>
+          <input type="radio" id="star2" name="ratingValue" value="2" /><label for="star2">☆</label>
+          <input type="radio" id="star1" name="ratingValue" value="1" /><label for="star1">☆</label>
+        </div>
+        <button type="submit" class="submit-rating">Submit Rating</button>
+      </form>
+      <p th:if="${existingRating != null}" th:text="'Your rating: ' + ${existingRating.rating}">Your rating: 4</p>
+    </div>
+    <p th:unless="${hasPurchased}">Purchase this product to leave a rating.</p>
+  </div>
+</main>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  const successMessage = /*[[${success}]]*/ null;
+  const errorMessage = /*[[${error}]]*/ null;
+
+  // if (successMessage) {
+  //   alert(successMessage);
+  // } else if (errorMessage) {
+  //   alert(errorMessage);
+  // }
+  /*]]>*/
+</script>
+</body>
+</html>

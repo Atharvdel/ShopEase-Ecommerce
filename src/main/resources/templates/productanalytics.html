@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Seller Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/productanalytics.css}" />
+</head>
+<body>
+<nav class="navbar">
+    <div class="section">
+        <h3>ShopEase</h3>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/api/logout}"><button class="home">Log Out</button></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="product-analytics-wrapper">
+    <aside class="product-analytics-sidebar">
+        <h2>Time Filter</h2>
+        <form method="get" th:action="@{/productanalytics.html}">
+            <input type="hidden" name="productId" th:value="${product.productId}" />
+            <label>
+                <input type="radio" name="filter" value="overall"
+                       th:checked="${filterType == 'Overall'}"
+                       onchange="this.form.submit()"> Overall
+            </label><br />
+            <label>
+                <input type="radio" name="filter" value="daily"
+                       th:checked="${filterType == 'Daily'}"
+                       onchange="this.form.submit()"> Daily
+            </label><br />
+            <label>
+                <input type="radio" name="filter" value="weekly"
+                       th:checked="${filterType == 'Weekly'}"
+                       onchange="this.form.submit()"> Weekly
+            </label><br />
+            <label>
+                <input type="radio" name="filter" value="monthly"
+                       th:checked="${filterType == 'Monthly'}"
+                       onchange="this.form.submit()"> Monthly
+            </label>
+        </form>
+    </aside>
+
+    <main class="product-analytics-content">
+        <h1>
+            Product Analytics -
+            <span th:text="${filterType != null ? filterType : 'Overall'}">Overall</span>
+        </h1>
+        <div class="product-card">
+            <img th:src="${imageUrl}" alt="Product Image" />
+            <div class="product-details">
+                <h2>Product Name: <span th:text="${product.name}">SuperWidget</span></h2>
+                <p><strong>Units Sold:</strong> <span th:text="${unitsSold}">1200</span></p>
+                <p><strong>Average Rating:</strong> <span th:text="${averageRating}">4.5</span> ★</p>
+                <p><strong>Total Sales:</strong> ₹<span th:text="${totalSales}">240000</span></p>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
