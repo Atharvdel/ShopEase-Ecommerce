@@ -16,7 +16,6 @@ A comprehensive full-stack e-commerce solution built on Spring Boot MVC architec
 - **Spring MVC**: RESTful controller architecture with request mapping and response handling
 - **Spring Data JPA**: Object-relational mapping with Hibernate as JPA provider
 - **Spring Security**: Authentication and authorization with role-based access control
-- **Spring Boot Actuator**: Production-ready monitoring and management endpoints
 
 **Database Layer**:
 - **MySQL**: ACID-compliant relational database with InnoDB storage engine
@@ -26,7 +25,6 @@ A comprehensive full-stack e-commerce solution built on Spring Boot MVC architec
 
 **Frontend Technologies**:
 - **Thymeleaf**: Server-side template engine with natural templating
-- **Bootstrap**: Responsive CSS framework for mobile-first design
 - **JavaScript**: DOM manipulation and AJAX for asynchronous operations
 - **CSS3**: Custom styling with Flexbox and Grid layouts
 
@@ -47,7 +45,6 @@ A comprehensive full-stack e-commerce solution built on Spring Boot MVC architec
 - **Search Engine**: Elasticsearch-like functionality for product discovery
 - **Analytics Dashboard**: Real-time metrics with data visualization
 - **Inventory Management**: Stock tracking with low-stock alerts
-- **Payment Gateway**: Secure transaction processing with encryption
 
 ## 📊 Performance Characteristics
 
